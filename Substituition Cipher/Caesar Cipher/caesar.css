@@ -9,17 +9,22 @@
     position: fixed;
     display: flex;
     width: 100%;
-    background-image: linear-gradient( 135deg, #d785f7 10%, #623AA2 100%);
+    top: 0;
+    background-color: #000;
     justify-content: flex-end;
     padding: 0.5rem;
     z-index: 2;
 }
 #header a{
-    color: black;
+    color: rgb(255, 255, 255);
     top: 1rem;
     right: calc(1rem + 0.5vw);
     margin-right: 4rem;
     font-size: calc(2rem + 2vw);
+}
+body{
+    background-color: #474747;
+
 }
 #main{
     width: 100%;
@@ -30,15 +35,14 @@
     align-items: center;
     background-position: center;
     background-size: cover;
-    background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);}
+}
 h1{
     color: white;
     font-size: 5rem;
     margin-top: 5vw;
     font-family: 'Press Start 2P', cursive;
-    text-shadow: 5px 2px #000000;
     text-align: center;
-    /* line-height: 1.2rem; */
+    text-shadow: 2px 2px #000;
 }
 
 #decryptInput{
@@ -57,7 +61,6 @@ h1{
     border: #000 solid 0.3px;
     background-color: white;
     color: #000000;
-    /* border-radius: 20px; */
     padding: 1.5rem;
     width: 180px;
     text-align: center;
@@ -69,9 +72,9 @@ h1{
     background-color: black;
     color: white;
     padding: 1.5rem;
+    cursor: pointer;
     font-family: 'Balsamiq Sans', cursive;
     font-weight: 600;
-    /* border-radius: 20px; */
     clip-path: polygon(10% 0,90% 0,100% 20%,100% 80%,90% 100%,10% 100%,0 80%,0 20%);
 }
 
@@ -94,7 +97,6 @@ h1{
     border: #000 solid 0.3px;
     background-color: white;
     color: #000000;
-    /* border-radius: 20px; */
     padding: 1.5rem;
     width: 180px;
     text-align: center;
@@ -106,16 +108,45 @@ h1{
     background-color: black;
     color: white;
     padding: 1.5rem;
+    cursor: pointer;
     font-family: 'Balsamiq Sans', cursive;
     font-weight: 600;
-    /* border-radius: 20px; */
     clip-path: polygon(10% 0,90% 0,100% 20%,100% 80%,90% 100%,10% 100%,0 80%,0 20%);
 }
-hr{
-    border-top: white solid 2px;
-    border-radius: 1.5px;
-    width: 50vw;
+
+
+.results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh auto;
+    padding: 0;
 }
+
+.result{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: #000 solid 2px;
+    margin-bottom: 20px;
+}
+.num{
+    padding: 10px;
+    font-size: 2.5rem;
+    background-color: #000;
+    color: white;
+}
+
+.text{
+    text-align: center;
+    word-wrap: normal;
+    width: auto;
+    background-color: white;
+    color: #000;
+    font-size: 2.5rem;
+    padding: 10px 5px;
+}
+
 
 @media screen and (max-width:650px){
     #decryptInput{
@@ -141,5 +172,4 @@ hr{
     #encryptInput button{
         margin-top: 20px;
     }
-
 }
