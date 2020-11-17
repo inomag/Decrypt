@@ -1,3 +1,4 @@
+const body = document.querySelector('body');
 const decrypt = document.querySelector('#decrypt');
 const encrypt = document.querySelector('#encrypt');
 
@@ -6,22 +7,56 @@ const cshift = document.querySelector('#cryptShift');
 const plainT = document.querySelector('#plainText');
 const eshift = document.querySelector('#encryptShift');
 
+const encryptInput = document.querySelector('#encrpytInput');
+const decryptInput = document.querySelector('#decrpytInput');
+
+const results = document.createElement('div');
+results.classList.add('results');
 decrypt.addEventListener('click', () => {
-    const shift = cshift.value;
-    const code = cCode.value;
-    const key = Number(shift)
-    console.log(key);
-    let result='';
-    if(key){
-        result = shiftText(code, key, result);
-        console.log(result);
+    if (body.contains(results)) {
+        alert('Refresh page');
     }
     else {
-        for (let i = 1; i < 26; i++){
-            result = shiftText(code, i, result);
-            console.log(`Shift: ${i} Text: ${result}`);
-            result = "";
+        const shift = cshift.value;
+        const code = cCode.value;
+        if (!code) {
+            alert("No string found");
+            return;
         }
+        const key = Number(shift)
+        let result='';
+        if(key){
+            result = shiftText(code, key, result);
+            body.appendChild(results);
+            showResult(key, result);
+        }
+        else {
+            body.appendChild(results);
+            for (let i = 1; i < 26; i++){
+                result = shiftText(code, i, result);
+                showResult(i, result);
+                result = "";
+            }
+        }    
+    }
+});
+encrypt.addEventListener('click', () => {
+    if (body.contains(results)) {
+        alert('Refresh page');
+    }
+    else {
+        body.appendChild(results);
+        const shift = eshift.value;
+        const code = plainT.value;
+        if (!code) {
+            alert("No string found");
+            return;
+        } else {
+            const key = Number(shift)
+            let result = '';
+            result = shiftText(code, key, result);
+            showResult(key, result);   
+        } 
     }
 });
 
@@ -44,12 +79,16 @@ const shiftText = (code, key, result) => {
     return result;
 }
 
-encrypt.addEventListener('click', () => {
-    const shift = eshift.value;
-    const code = plainT.value;
-    const key = Number(shift)
-    console.log(key);
-    let result = '';
-    result = shiftText(code, key, result);
-        console.log(result);
-})
+const showResult = (shift, code) => {
+    const result = document.createElement('div');
+    const num = document.createElement('p');
+    const text = document.createElement('p');
+    results.appendChild(result);
+    result.appendChild(num);
+    result.appendChild(text);
+    num.innerText = `${shift} shift`;
+    text.innerText = code;
+    result.classList.add('result');
+    num.classList.add('num');
+    text.classList.add('text');
+}
